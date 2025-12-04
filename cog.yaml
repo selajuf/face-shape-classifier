@@ -1,0 +1,9 @@
+build:
+  python_version: "3.10"
+  python_packages:
+    - "torch"
+    - "torchvision"
+    - "Pillow"
+    - "requests"
+
+predict: "predict.py:Predictor"
