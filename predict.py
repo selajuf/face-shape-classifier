@@ -71,9 +71,10 @@ class Predictor(BasePredictor):
         """Вызывается один раз при старте контейнера — скачиваем и загружаем модель."""
         download_model_if_not_exists(MODEL_URL, MODEL_PATH)
 
-        self.model = torch.load(MODEL_PATH, map_location="cpu")
+        self.model = torch.load(MODEL_PATH, map_location="cpu", weights_only=False)
         self.model.eval()
         self.model.to(device)
+
 
     def predict(
         self,
@@ -93,3 +94,4 @@ class Predictor(BasePredictor):
             class_names[i]: float(percentages[i].item())
             for i in range(len(class_names))
         }
+
